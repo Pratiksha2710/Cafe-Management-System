@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+<title>Cafe Prista</title>
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this item?");
+    }
+ 	function confirmUpdate() {
+ 	     return confirm("Are you sure you want to update this item?");
+    }
+
+</script>
+<script src="https://kit.fontawesome.com/0faddc1af8.js"
+	crossorigin="anonymous"></script>
+<style>
+.carousel-caption d-none d-md-block {
+	margin: 0;
+	padding: 0;
+}
+
+.btn-secondary {
+	background-color: #CD5C5C;
+}
+
+.btn-secondary:hover {
+	background-color: #942929;
+	/* Change this to the desired hover color */
+}
+
+.table {
+	border: 2px solid #FFDAB9;
+}
+
+.itemlist {
+	background: linear-gradient(90deg, #FDF5E6 0%, #FFEFD5 35%, #FFDAB9 100%);
+}
+</style>
+</head>
+
+<body style="background: #FFF5EE;">
+
+	<nav class="navbar navbar-expand-lg navbar-light "
+		style="background-color: #660000;">
+		<div class="container-fluid">
+			<a class="navbar-brand text-white" href="#">Cafe Prista</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active text-white"
+						aria-current="page" href="/">Home</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
+						href="menu">Menu</a></li>
+				</ul>
+				<div>
+					<a class="nav-link text-white" href="addtocart">Cart</a>
+				</div>
+				<div>
+					<a class="nav-link text-white" href="cart">Item-List</a>
+				</div>
+				<div>
+					<a class="nav-link text-white" href="add-item"> Add Items</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<h3 class="text-center my-3" style="font-family: cursive;">Item
+		List</h3>
+	<div class="itemlist my-3 col-md-8 text-center mx-auto">
+		<table class="table  table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Item-Name</th>
+					<th scope="col">Price</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cafe : ${item}">
+					<td th:text="${cafe.id}"></td>
+					<td th:text="${cafe.name}"></td>
+					<td th:text="${cafe.price}"></td>
+					<td><a class="btn btn-secondary btn-sm"
+						th:href="@{/myitem/{id}(id=${cafe.id})}">Add to Cart</a> <a
+						style="color: green" th:href="@{/editItem/{id}(id=${cafe.id})}"><i
+							class="fa-solid fa-pen-to-square ms-4"
+							onclick="return confirmUpdate()"></i></a> <a style="color: red"
+						th:href="@{/deleteItem/{id}(id=${cafe.id})}"><i
+							class="fa-solid fa-trash ms-4" onclick="return confirmDelete()"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
